@@ -1,0 +1,86 @@
+apply plugin: 'com.android.application'
+apply from: '../config/quality/quality.gradle'
+
+// Load sensitive project properties
+ext.projectProps = {
+    def props = new Properties()
+    props.load(new FileInputStream(rootProject.file("project.properties")))
+    project.ext.projectProps = props
+}()
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.hungnm.mytestapp"
+        minSdkVersion 21
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        vectorDrawables.setUseSupportLibrary true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "MY_API_KEY", projectProps.myApiKey
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {}
+    }
+
+    flavorDimensions "final"
+    productFlavors {
+        mock {
+            dimension "final"
+            applicationIdSuffix ".mock"
+        }
+
+        prod {
+            dimension "final"
+        }
+    }
+}
+
+ext {
+    dbflowVersion = "4.2.4"
+    supportLibVersion = "27.1.0"
+    butterKnifeVersion = "8.8.1"
+    glideVersion = "3.7.0"
+    okhttpVersion = "3.6.0"
+    retrofitVersion = "2.2.0"
+    stethoOkhttpVersion = "1.5.0"
+    gsonVersion = "2.8.0"
+    parcelerVersion = "1.1.6"
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "com.android.support:appcompat-v7:${supportLibVersion}"
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation "com.android.support:design:${supportLibVersion}"
+    implementation "com.android.support:support-v4:${supportLibVersion}"
+    implementation "com.android.support:support-vector-drawable:${supportLibVersion}"
+    implementation "com.android.support:animated-vector-drawable:${supportLibVersion}"
+
+    implementation "com.jakewharton:butterknife:${butterKnifeVersion}"
+    implementation "com.github.bumptech.glide:glide:${glideVersion}"
+    implementation "com.squareup.okhttp3:okhttp:${okhttpVersion}"
+    implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    implementation "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+    implementation "com.facebook.stetho:stetho:${stethoOkhttpVersion}"
+    implementation "com.facebook.stetho:stetho-okhttp3:${stethoOkhttpVersion}"
+    implementation "com.google.code.gson:gson:${gsonVersion}"
+    implementation "org.parceler:parceler-api:${parcelerVersion}"
+    implementation "com.github.Raizlabs.DBFlow:dbflow:${dbflowVersion}"
+
+    annotationProcessor "com.github.Raizlabs.DBFlow:dbflow-processor:${dbflowVersion}"
+    annotationProcessor "com.jakewharton:butterknife-compiler:${butterKnifeVersion}"
+    annotationProcessor "org.parceler:parceler:${parcelerVersion}"
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+}

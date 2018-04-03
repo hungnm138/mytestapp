@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:paddingBottom="@dimen/title_paddingBottomTop"
+            android:paddingLeft="@dimen/title_paddingLeft"
+            android:paddingRight="@dimen/title_paddingRight"
+            android:paddingTop="@dimen/title_paddingBottomTop"
+            android:text="Name"
+            android:textSize="@dimen/title_textSize" />
+
+        <TextView
+            android:id="@+id/tvDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/title_margin_bottom"
+            android:fontFamily="sans-serif-black"
+            android:paddingBottom="@dimen/title_paddingBottomTop"
+            android:paddingLeft="@dimen/title_paddingLeft"
+            android:paddingRight="@dimen/title_paddingRight"
+            android:paddingTop="@dimen/title_paddingBottomTop"
+            android:text="Desc"
+            android:textSize="@dimen/title_textSize" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvStarCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:fontFamily="sans-serif-black"
+        android:paddingBottom="@dimen/title_paddingBottomTop"
+        android:paddingLeft="@dimen/title_paddingLeft"
+        android:paddingRight="@dimen/title_paddingRight"
+        android:paddingTop="@dimen/title_paddingBottomTop"
+        android:text="Counting"
+        android:textSize="@dimen/title_textSize" />
+</RelativeLayout>
