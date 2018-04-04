@@ -15,24 +15,20 @@ import java.util.Map;
 public class RemoteDataSource extends DataSource {
 
     public static final String API_KEY = BuildConfig.MY_API_KEY;
-    public static final String BASE_API_URL = "https://api.github.com/users";
+    public static final String BASE_API_URL = "https://api.github.com/";
 
     public static final String QUERY_PARAM_USERNAME = "username";
 
     public static final String QUERY_PARAM_API_KEY = "API_KEY"; // just in case need authentication
 
-
     public static final String QUERY_PARAM_DIRECTION = "direction"; // asc, desc
-
     public static final String QUERY_PARAM_SORT = "sort"; // created, updated, pushed, full_name
-
     public static final String QUERY_PARAM_TYPE = "type"; // all, owner, member.
 
-
-    public static final String QUERY_PARAM_PER_PAGE = "per_page";
+    // For paging - if needed
+    public static final String QUERY_PARAM_PER_PAGE = "page";
     public static final String QUERY_PARAM_VALUE_PER_PAGE = "10";
     public static final String QUERY_PARAM_PAGE = "page";
-
 
     private static RemoteDataSource remoteDataSource;
 
@@ -66,18 +62,14 @@ public class RemoteDataSource extends DataSource {
                 apiService.getRepos(username, queryMap);
 
         call.enqueue(
-                new retrofit2.Callback<com.hungnm.mytestapp.data.models.github
-                        .Response>() {
+                new retrofit2.Callback<com.hungnm.mytestapp.data.models.github.Response>() {
                     @Override
                     public void onResponse(
-                            retrofit2.Call<com.hungnm.mytestapp.data.models.github
-                                    .Response> call,
-                            retrofit2.Response<com.hungnm.mytestapp.data.models
-                                    .github.Response> response) {
+                            retrofit2.Call<com.hungnm.mytestapp.data.models.github.Response> call,
+                            retrofit2.Response<com.hungnm.mytestapp.data.models.github.Response> response) {
                         if (response.isSuccessful()) {
-                            com.hungnm.mytestapp.data.models.github.Response
-                                    commentsResponse = response.body();
-                            callback.onSuccess(commentsResponse.getrepos());
+                            com.hungnm.mytestapp.data.models.github.Response reposResponse = response.body();
+                            callback.onSuccess(reposResponse.getrepos());
                         } else {
                             callback.onFailure(new Throwable());
                         }
@@ -85,8 +77,7 @@ public class RemoteDataSource extends DataSource {
 
                     @Override
                     public void onFailure(
-                            retrofit2.Call<com.hungnm.mytestapp.data.models.github
-                                    .Response> call,
+                            retrofit2.Call<com.hungnm.mytestapp.data.models.github.Response> call,
                             Throwable t) {
                         callback.onFailure(t);
                     }

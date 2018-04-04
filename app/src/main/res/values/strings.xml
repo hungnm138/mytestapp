@@ -5,5 +5,4 @@
     <string name="network_failure_msg">No network. Please try again later.</string>
     <string name="offline_mode_msg">No network - Offline mode</string>
     <string name="no_repos_available">No repositories available currently</string>
-    <string name="no_comments_available">No comments available currently</string>
 </resources>

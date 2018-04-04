@@ -4,7 +4,7 @@ import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Query;
+import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 /**
@@ -13,8 +13,8 @@ import retrofit2.http.QueryMap;
  */
 public interface ApiService {
 
-    @GET("services/rest")
+    @GET("users/{username}/repos")
     Call<com.hungnm.mytestapp.data.models.github.Response> getRepos(
-            @Query(RemoteDataSource.QUERY_PARAM_USERNAME) String username,
+            @Path(RemoteDataSource.QUERY_PARAM_USERNAME) String username,
             @QueryMap Map<String, String> queryMap);
 }

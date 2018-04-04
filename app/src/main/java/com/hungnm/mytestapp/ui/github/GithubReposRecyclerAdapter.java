@@ -89,8 +89,8 @@ public class GithubReposRecyclerAdapter extends RecyclerView.Adapter<RecyclerVie
             GithubRepos repos = getItem(position);
             //cast holder to item viewholder and set data
             ((ViewHolder) viewHolder).tvName.setText(repos.getName());
-            ((ViewHolder) viewHolder).tvDesc.setText(repos.getDesc());
-            ((ViewHolder) viewHolder).tvStarCount.setText(String.valueOf(repos.getCount()));
+            ((ViewHolder) viewHolder).tvDesc.setText(repos.getDescription());
+            ((ViewHolder) viewHolder).tvStarCount.setText(String.valueOf(repos.getStargazers_count()));
         } else if (viewHolder instanceof HeaderViewHolder) {
             // cast holder to header viewholder and set data for header.
             // TODO get photurl here
